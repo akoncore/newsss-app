@@ -33,14 +33,14 @@ class RegisterView(generics.CreateAPIView):
         return Response({
             'user':UserProfileSerializer(user).data,
             'refresh':str(refresh),
-            'acsess':str(refresh.access_token),
+            'access':str(refresh.access_token),
             'message':'User registered succesfully'
         }, status=status.HTTP_201_CREATED)
         
 
 class LoginView(generics.CreateAPIView):
     serializer_class = UserLoginSerializer
-    permission_classes = [permissions]
+    permission_classes = [permissions.AllowAny]
     
     def post(self,request,*args,**kwargs):
         serializer = self.get_serializer(data = request.data)
@@ -52,8 +52,8 @@ class LoginView(generics.CreateAPIView):
         
         return Response({
             'user':UserProfileSerializer(user).data,
-            'refrech':str(refresh),
-            'acsses':str(refresh.access_token),
+            'refresh': str(refresh),
+            'access': str(refresh.access_token),
             'message':'User login in succesfuly'
         },status=status.HTTP_200_OK)
         

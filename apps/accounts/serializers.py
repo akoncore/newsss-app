@@ -1,4 +1,4 @@
-from django.forms import ValidationError
+
 from rest_framework.serializers import (
     ModelSerializer,
     CharField,
